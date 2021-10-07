@@ -1,6 +1,12 @@
 server:
   port: 9191
 
+zuul:
+  prefix: /api
+  routes:
+    resource-service-one:
+      sensitive-headers: Cookie,Set-Cookie
+
 spring:
   application:
     name: API-Gateway
@@ -12,13 +18,13 @@ spring:
           predicates:
             - Path=/api/products/**
         - id: CART-SERVICE
-          uri: lb://CART-SERVICE
+          uri: lb://CART-SERVICE/**
           predicates:
-            - Path=/api/cart/**
+            - Path=/api/cart
         - id: ORDER-SERVICE
-          uri: lb://ORDER-SERVICE
+          uri: lb://ORDER-SERVICE/**
           predicates:
-            - Path=/api/order/**
+            - Path=/api/order
 
 #  loadbalance = lb
 
