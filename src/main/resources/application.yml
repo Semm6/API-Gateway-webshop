@@ -1,12 +1,6 @@
 server:
   port: 9191
 
-zuul:
-  prefix: /api
-  routes:
-    resource-service-one:
-      sensitive-headers: Cookie,Set-Cookie
-
 spring:
   application:
     name: API-Gateway
